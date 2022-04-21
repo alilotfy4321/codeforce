@@ -2,10 +2,17 @@
 using namespace std;
 typedef long long ll;
 
+vector<ll>powers;
+vector<ll> divisors;
+
+//-----
+void getPower(){
+	for(int s=0 ; s<=32 ; s++ ){
+		powers.push_back((ll)pow(2,s));
+	}
+}
+//------
 void getFactors(int n){
-	
-	vector<ll> divisors;
-	vector<ll>powers;
 	
 	
 	for(int i=1 ; i*i<=n ;i++){
@@ -19,13 +26,19 @@ void getFactors(int n){
 			}
 		}	
 	}
-	//get powers
-	for(int s=0 ; s<=32 ; s++ ){
-		powers.push_back((ll)pow(2,s));
-	}
-	//////////////	
+		
 	sort(divisors.rbegin(),divisors.rend());
 	
+
+	
+}
+//--------
+void checkDivisors(int n){
+	//get powers
+	getPower();
+	//getFactors
+	getFactors(n);
+	/////////
 	for(int i=0 ; i<divisors.size() ; i++ ){
 		
 		for(int j=1; j<powers.size() ; j++ ){
@@ -39,18 +52,14 @@ void getFactors(int n){
 		}
 			
 	}
-	
 }
 
-void checkDivisor(){
-	
-}
 
 int main(){
 	
 	int n;
 	cin>>n;
-	getFactors (n);
+	checkDivisors(n);
 	
 	
 	system("pause");
